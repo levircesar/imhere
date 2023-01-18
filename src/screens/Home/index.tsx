@@ -13,7 +13,7 @@ export function Home() {
     }
     if(!participantName.trim()){
       setParticipantName('');
-      return Alert.alert("Adicione o nome", "Adicione o nome do participante")
+      return Alert.alert("Nome vazio", "Adicione um nome ao participante")
     }
  
     setParticipants(prevState => [...prevState, participantName.trim()]);
@@ -21,10 +21,11 @@ export function Home() {
   }
 
   function handleParticipantRemove(name : string){
+    
     Alert.alert("Remover", `Deseja remover o(a) participante ${name} ?`, [
       {
         text: 'Sim',
-        onPress: () => Alert.alert("Deletado!")
+        onPress: () => setParticipants(prevstate => prevstate.filter(participant => participant !== name))
       },
       {
         text: 'Não',
